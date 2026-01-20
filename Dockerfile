@@ -4,22 +4,22 @@ FROM python:3.12-slim
 WORKDIR /APP
 
 # Устанавливаем системные зависимости
-RUN apt-get update && apg-get install -y \
+RUN apt-get update && apt-get install -y \
     gcc \
     postgresql-client \
     && rm -rf /var/lib/apt/list/*
 
 # Копируем все зависимости проекта
-COPY requirements.txt
+COPY requirements.txt.
 
 # Устанавливаем зависимости Python
-RUN pip install --nocashe-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Копируем сам проект
-COPY src/app/src/
+COPY src/ ./src/
 
 # Порт, на котором разворачиваем
 EXPOSE 8000
 
 # Команды запуска
-CMD ['python','src/manage.py', 'runserver', '0.0.0.0:8000']
+CMD ["python","src/manage.py", "runserver", "0.0.0.0:8000"]
