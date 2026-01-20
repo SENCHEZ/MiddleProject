@@ -8,7 +8,7 @@ service:
       volumes:
         -./src:/app/src
         -./media:/app/media
-      enviroment:
+      environment:
         -DJANGO_ENV = development
         -REDIS_URL = redis://localhost:6379/0
         -CELERY_BROKER_URL = redis://localhost:6379/0
@@ -24,7 +24,7 @@ service:
     celery:
       build:.
       command:celery -A config worker -loglevel=info
-      enviroment:
+      environment:
         -DJANGO_ENV = development
         -REDIS_URL = redis://localhost:6379/0
         -CELERY_BROKER_URL = redis://localhost:6379/0
